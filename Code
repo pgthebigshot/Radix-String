@@ -1,0 +1,134 @@
+import java.io.*;
+import java.math.*;
+import java.util.*;
+public class a {
+	static class FastReader {
+		BufferedReader br;
+		StringTokenizer st;
+		
+		public FastReader() {
+			br = new BufferedReader(new
+					InputStreamReader(System.in));
+		}
+		
+		String next() {
+			while (st == null || !st.hasMoreElements()) {
+				try {
+					st = new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return st.nextToken();
+		}
+		
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+		
+		long nextLong() {
+			return Long.parseLong(next());
+		}
+		
+		double nextDouble() {
+			return Double.parseDouble(next());
+		}
+		
+		String nextLine() {
+			String str = "";
+			try {
+				str = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return str;
+		}
+	}
+	
+	static FastReader sc = new FastReader();
+	static PrintWriter out = new PrintWriter(System.out);
+	
+	private static int[] rai(int n) {
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		return arr;
+	}
+	
+	private static int[][] rai(int n, int m) {
+		int[][] arr = new int[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				arr[i][j] = sc.nextInt();
+			}
+		}
+		return arr;
+	}
+	
+	private static long[] ral(int n) {
+		long[] arr = new long[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextLong();
+		}
+		return arr;
+	}
+	
+	private static long[][] ral(int n, int m) {
+		long[][] arr = new long[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				arr[i][j] = sc.nextLong();
+			}
+		}
+		return arr;
+	}
+	
+	private static int ri() {
+		return sc.nextInt();
+	}
+	
+	private static long rl() {
+		return sc.nextLong();
+	}
+	
+	private static String rs() {
+		return sc.next();
+	}
+	
+	static void solve()
+	{
+		int n=sc.nextInt(),i,j,rad,mask;
+		String str=sc.next();
+		for(i=1;i<4;i++)
+		{
+			rad=(int)Math.pow(26, i);
+			for(mask=0;mask<rad;mask++)
+			{
+				int tm=mask;
+				String s="";
+				for(j=1;j<=i;j++,tm/=26)// this like radix 26^1 -> 26^2 -> 26^3 so on
+				{
+					int ch=tm%26;
+					s=(char)('a'+ch)+s;
+				}
+				for(j=0;j<=n-i;j++)
+					if(s.equals(str.substring(j,j+i)))
+						break;
+				if(j>n-i)
+				{
+					System.out.println(s);
+					return;
+				}
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		int t;
+		t=a.ri();
+		while(t-->0)
+			solve();
+	}
+}
